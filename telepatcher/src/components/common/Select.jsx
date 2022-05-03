@@ -1,13 +1,18 @@
-import React from 'react'
+import { useState } from 'react'
 
-function Select() {
+function Select(props) {
+  const handleChange = (event) =>{
+    setselectValue(event.target.value)
+    props.handleChange(event)
+  }
+  const [selectValue, setselectValue] = useState(props.options[0])
   return (
     <>
-      <label key={"label" + itemIndex}>{item.name}</label>
-      <select key={"select" + itemIndex} value={item.name} onChange={handleChange}>
-       {item.options.map((option, optionIndex)=>{
-            return (<option key={"option" + itemIndex + "-" + optionIndex} value={option}>{option}</option>)
-            })}
+      <label >{props.name}</label>
+      <select value={selectValue} onChange={handleChange}>
+       {props.options.map((option, optionIndex)=>{
+          return (<option key={"option" + optionIndex} value={option}>{option}</option>)
+        })}
         </select>
     </>
   )

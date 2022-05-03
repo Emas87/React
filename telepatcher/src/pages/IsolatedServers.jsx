@@ -20,30 +20,29 @@ const importFormStructure = [
   },
 ]
 
-const importDeleteStructure = [
+const DeleteFormStructure = [
   {
     type: "select",
     name: "Isolated Server Hostname",
-    constraint: "", //None
     options: ["JFSOFS001", "JFSOFS002", "JFSOFS003", "JFSOFS004" ]
   },{
     type: "input-text",
     name: "Isolated Server PGP Key ID",
     constraint: "", //None
     value: "0xC10EBF3A",
-    disable: true
+    disabled: true
   },{
     type: "submit",
-    name: "Import PGP Key",
+    name: "Delete PGP Key",
     constraint: "", //None
   },
 ]
 
-const handleSubmitImport = () => {
-
+const handleSubmitImport = (event) => {
+  console.log("Import PGP Key")  
 }
-const handleSubmitDelete = () => {
-
+const handleSubmitDelete = (event) => {
+  console.log("Delete PGP Key")
 }
 function IsolatedServers() {
   const {updateCurrentPage} = useContext(GlobalContext);
@@ -51,7 +50,7 @@ function IsolatedServers() {
   return (
     <>
       <Forms structure={importFormStructure} handleSubmit={handleSubmitImport}/>
-      <Forms structure={importDeleteStructure} handleSubmit={handleSubmitDelete}/>
+      <Forms structure={DeleteFormStructure} handleSubmit={handleSubmitDelete}/>
     </>
   )
 }
