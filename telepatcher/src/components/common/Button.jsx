@@ -1,6 +1,7 @@
 function Button(props) {
+  
   return (
-    <button className="btn btn-primary" onClick={props.handleClick} disabled={props.disabled}>{props.name}</button>
+    <button className={props.className? props.className : "btn btn-primary"} onClick={props.handleClick} disabled={props.disabled}>{props.name}</button>
   )
 }
 

@@ -20,7 +20,7 @@ const importFormStructure = [
   },
 ]
 
-const DeleteFormStructure = [
+const deleteFormStructure = [
   {
     type: "dropdown",
     name: "Isolated Server Hostname",
@@ -54,7 +54,7 @@ function IsolatedServers() {
           <Forms structure={importFormStructure} handleSubmit={handleSubmitImport}/>
         </div>
         <div className='col'>
-          <Forms structure={DeleteFormStructure} handleSubmit={handleSubmitDelete}/>
+          <Forms structure={deleteFormStructure} handleSubmit={handleSubmitDelete}/>
         </div>
       </div>
     </div>

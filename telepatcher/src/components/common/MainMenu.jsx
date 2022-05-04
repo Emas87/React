@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+import GlobalContext from '../../context/GlobalContext';
 import Option from './Option'
 
 
 function MainMenu(props) {
+  const {updateCurrentPage} = useContext(GlobalContext);
+  updateCurrentPage('')
   return (
     <div>
         {props.linkList.map((link, index) => {
