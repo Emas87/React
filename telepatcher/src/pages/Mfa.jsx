@@ -37,10 +37,16 @@ function Mfa() {
   const {updateCurrentPage} = useContext(GlobalContext);
   updateCurrentPage('Multi Factor Authentication')
   return (
-    <>
-      <Forms structure={SetFormStructure} handleSubmit={handleSet}/>
-      <Forms structure={ResetFormStructure} handleSubmit={handleReset}/>
-    </>
+    <div className="container-fluid">
+      <div className="row">
+        <div className='col'>
+          <Forms structure={SetFormStructure} handleSubmit={handleSet}/>
+        </div>
+        <div className='col'>
+          <Forms structure={ResetFormStructure} handleSubmit={handleReset}/>
+        </div>
+      </div>
+    </div>
   )
 }
 

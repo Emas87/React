@@ -1,4 +1,15 @@
-$intel-font-path: "~it-mlaf-sass-bs4/fonts/" !default;
+@import "~@intc/dlux-bootstrap/dist/css/dlux.css";
 
-@import "~it-mlaf-sass-bs4/it-mlaf";
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 766.98px) {  
+    .input-label{
+        width: 200px;
+    }
+}
+@media (min-width: 767.98px) {  
+    .input-label{
+        width: 300px;
+    }
+}
 

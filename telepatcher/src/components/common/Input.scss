@@ -1,0 +1,15 @@
+.input-label {
+	position: relative;
+	&__input {
+		padding-right: 2rem;
+	}
+	&__clear {
+		right: 0.25rem;
+		border: none;
+		background: none;
+		top: 1.9rem;
+		position: absolute;
+		z-index: 100;
+		cursor: pointer;
+	}
+}

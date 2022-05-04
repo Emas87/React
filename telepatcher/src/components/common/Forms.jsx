@@ -1,6 +1,6 @@
-import Select from "./Select"
 import Input from "./Input"
 import CheckboxGroup from "./CheckboxGroup"
+import DropdownSearchable from "./DropDownSearchable"
 
 function Forms(props) {
   const handleChange = () => {
@@ -19,7 +19,7 @@ function Forms(props) {
           let [type, elementType] = item.type.split("-")
           switch(type){
             case "input":
-              return (<Input key={itemIndex} name={item.name} type={elementType} value={item.value} disabled={item.disabled} handleChange={handleChange}/>)
+              return (<Input key={itemIndex} placeholder={item.placeholder} name={item.name} type={elementType} value={item.value} disabled={item.disabled} handleChange={handleChange}/>)
             default:
               return <></>
           }
@@ -27,11 +27,11 @@ function Forms(props) {
           //simple item
           switch(item.type){
             case "submit":
-              return (<input key="submit" type="submit" value={item.name}/>)
-            case "select":
-              return (<Select key={itemIndex} name={item.name} options={item.options} handleChange={handleChange}/>)
+              return (<input className="btn btn-primary" key="submit" type="submit" value={item.name}/>)
+            case "dropdown":
+              return (<DropdownSearchable key={itemIndex} name={item.name} items={item.options} onItemSelected={handleChange}/>)
             case "checkbox":
-              return (<CheckboxGroup key={itemIndex} name={item.name} options={item.options} handleChange={handleChange}/>)
+              return (<CheckboxGroup key={itemIndex} name={item.name} options={item.options} />)
             default:
               return <></>
           }

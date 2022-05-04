@@ -22,9 +22,9 @@ const importFormStructure = [
 
 const DeleteFormStructure = [
   {
-    type: "select",
+    type: "dropdown",
     name: "Isolated Server Hostname",
-    options: ["JFSOFS001", "JFSOFS002", "JFSOFS003", "JFSOFS004" ]
+    options: [{name:"JFSOFS001", id:0}, {name:"JFSOFS002", id:2}, {name:"JFSOFS003", id:3}, {name:"JFSOFS004", id:4} ]
   },{
     type: "input-text",
     name: "Isolated Server PGP Key ID",
@@ -48,10 +48,16 @@ function IsolatedServers() {
   const {updateCurrentPage} = useContext(GlobalContext);
   updateCurrentPage('Isolated Servers')
   return (
-    <>
-      <Forms structure={importFormStructure} handleSubmit={handleSubmitImport}/>
-      <Forms structure={DeleteFormStructure} handleSubmit={handleSubmitDelete}/>
-    </>
+    <div className="container-fluid">
+      <div className="row">
+        <div className='col'>
+          <Forms structure={importFormStructure} handleSubmit={handleSubmitImport}/>
+        </div>
+        <div className='col'>
+          <Forms structure={DeleteFormStructure} handleSubmit={handleSubmitDelete}/>
+        </div>
+      </div>
+    </div>
   )
 }
 
