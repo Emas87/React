@@ -30,7 +30,8 @@ function Header() {
     } else if(buttondDisabled) {
       SetbuttondDisabled(false)
     }
-  }, [buttondDisabled, path.pathname])
+    // eslint-disable-next-line
+  }, [path.pathname])
 
   return (
     <header className="layout__header container-fluid">

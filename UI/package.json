@@ -1,7 +1,8 @@
 {
-  "name": "Vulnerability Patch Manager",
+  "name": "vulnerability_patch_manager",
   "version": "0.1.0",
   "private": true,
+  "proxy" : "http://127.0.0.1:8000",
   "dependencies": {
     "@intc/dlux-bootstrap": "^3.2.7",
     "@testing-library/jest-dom": "^5.16.4",
