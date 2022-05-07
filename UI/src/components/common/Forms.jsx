@@ -2,6 +2,7 @@ import Input from "./Input"
 import CheckboxGroup from "./CheckboxGroup"
 import DropdownSearchable from "./DropDownSearchable"
 
+// TODO: any change in dropdown or checkbox is triggering submit
 function Forms(props) {
   const handleChange = () => {
 
@@ -19,7 +20,7 @@ function Forms(props) {
           let [type, elementType] = item.type.split("-")
           switch(type){
             case "input":
-              return (<Input key={itemIndex} placeholder={item.placeholder} name={item.name} type={elementType} value={item.value} disabled={item.disabled} handleChange={handleChange}/>)
+              return (<Input reference={props.references[itemIndex]} key={itemIndex} placeholder={item.placeholder} name={item.name} type={elementType} value={item.value} disabled={item.disabled}/>)
             default:
               return <></>
           }
@@ -29,9 +30,9 @@ function Forms(props) {
             case "submit":
               return (<input className="btn btn-primary" key="submit" type="submit" value={item.name}/>)
             case "dropdown":
-              return (<DropdownSearchable key={itemIndex} name={item.name} items={item.options} onItemSelected={handleChange}/>)
+              return (<DropdownSearchable  reference={props.references[itemIndex]} key={itemIndex} name={item.name} items={item.options} onItemSelected={handleChange}/>)
             case "checkbox":
-              return (<CheckboxGroup key={itemIndex} name={item.name} options={item.options} />)
+              return (<CheckboxGroup  reference={props.references[itemIndex]} key={itemIndex} name={item.name} options={item.options} />)
             default:
               return <></>
           }

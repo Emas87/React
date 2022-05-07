@@ -1,6 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Forms from '../components/common/Forms';
 import GlobalContext from '../context/GlobalContext';
+import * as UsersFunc from './UsersEndpoints'
+
 
 const CreateFormStructure = [
   {
@@ -55,29 +57,39 @@ const ResetFromStructure = [
   },
 ]
 
-const handleSubmitCreate = (event) => {
-  console.log("Import PGP Key")  
-}
-const handleSubmitReset = (event) => {
-  console.log("Delete PGP Key")
-}
 function Users() {
+  const handleSubmitCreate = () => {
+    const result = UsersFunc.submitCreate(LoginIDCreate.current.value, passwordCreate.current.value, dropdownCreate.current.value, checkboxItemsCreate)
+    console.log(result)
+  }
+  const handleSubmitReset = () => {
+    const result = UsersFunc.submitReset(LoginIDReset.current.value, passwordReset.current.value, userTypeReset.current.value, checkboxItemsReset)
+    console.log(result)
+  }
   const {updateCurrentPage} = useContext(GlobalContext);
   updateCurrentPage('Users')
+
+  const LoginIDCreate = useRef(null)
+  const passwordCreate = useRef(null)
+  const dropdownCreate = useRef(null)
+  const [checkboxItemsCreate, setcheckboxItemsCreate] = useState(CreateFormStructure[3].options);
+
+  const LoginIDReset= useRef(null)
+  const passwordReset = useRef(null)
+  const userTypeReset = useRef(null)
+  const [checkboxItemsReset, setcheckboxItemsReset] = useState(ResetFromStructure[3].options);
+
   return (
     <div className="container-fluid">
       <div className="row">
         <div className='col'>
-          <Forms structure={CreateFormStructure} handleSubmit={handleSubmitCreate}/>
+          <Forms references={[LoginIDCreate, passwordCreate, dropdownCreate, setcheckboxItemsCreate]} structure={CreateFormStructure} handleSubmit={handleSubmitCreate}/>
         </div>
         <div className='col'>
-          <Forms structure={ResetFromStructure} handleSubmit={handleSubmitReset}/>
+          <Forms references={[LoginIDReset, passwordReset, userTypeReset, setcheckboxItemsReset]} structure={ResetFromStructure} handleSubmit={handleSubmitReset}/>
         </div>
       </div>
     </div>
-      
-      
-
   )
 }
 

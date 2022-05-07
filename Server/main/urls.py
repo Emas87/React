@@ -3,5 +3,9 @@ from . import views
 
 # URLConf
 urlpatterns = [
-    path('hello/', views.say_hello)
+    path('isolatedServers/', views.isolatedServers),
+    path('users/', views.users),
+    path('gpg/', views.gpg),
+    path('exportGPGKey/', views.exportGPGKey),
+    path('mfa/', views.mfa),
 ]

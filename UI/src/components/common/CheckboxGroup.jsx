@@ -27,6 +27,7 @@ function CheckboxGroup(props) {
         return item;
       });
       setFilteredItems(updatedItems);
+      props.reference(updatedItems)
     };
 
     const style = { maxHeight: "20rem", overflow: "auto" };

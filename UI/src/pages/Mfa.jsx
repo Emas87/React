@@ -1,13 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import Forms from '../components/common/Forms';
 import GlobalContext from '../context/GlobalContext';
+import * as MfaFunc from './MfaEndpoints'
 
-const handleSet = (event) => {
-  console.log("Set MFA")  
-}
-const handleReset = (event) => {
-  console.log("Reset MFA")
-}
 const SetFormStructure = [
   {
     type: "input-text",
@@ -34,16 +29,29 @@ const ResetFormStructure = [
 ]
 
 function Mfa() {
+  const handleSet = () => {
+    const result = MfaFunc.createMFA(mfaCreate.current.value)
+    console.log(result)
+  }
+  const handleReset = () => {
+    const result = MfaFunc.resetMFA(mfaReset.current.value)
+    console.log(result)
+  }
+
   const {updateCurrentPage} = useContext(GlobalContext);
   updateCurrentPage('Multi Factor Authentication')
+
+  const mfaCreate = useRef(null)
+  const mfaReset = useRef(null)
+
   return (
     <div className="container-fluid">
       <div className="row">
         <div className='col'>
-          <Forms structure={SetFormStructure} handleSubmit={handleSet}/>
+          <Forms references={[mfaCreate]} structure={SetFormStructure} handleSubmit={handleSet}/>
         </div>
         <div className='col'>
-          <Forms structure={ResetFormStructure} handleSubmit={handleReset}/>
+          <Forms references={[mfaReset]} structure={ResetFormStructure} handleSubmit={handleReset}/>
         </div>
       </div>
     </div>

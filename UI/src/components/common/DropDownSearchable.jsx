@@ -42,8 +42,10 @@ const DropdownSearchable = ({
 	onItemSelected = null,
 	onClosed = null,
 	name = "Default",
+  reference = null,
 }) => {
 	const [open, setOpen] = useState(false);
+
 	const onToggle = (isOpen, metadata) => {
 		if (metadata.source === "select") {
 			setOpen(true);
@@ -53,31 +55,36 @@ const DropdownSearchable = ({
 		}
 		setOpen(isOpen);
 	};
+
 	const [selectedItem, setSelectedItem] = useState(null);
 
 	const onSelected= (event, item) => {
 		setSelectedItem(item);
-		if (onItemSelected) onItemSelected(event);
+		if (onItemSelected) onItemSelected(event,item);
 	}
+
 	return (
-		<Dropdown onToggle={onToggle}>
-			<Dropdown.Toggle variant="secondary">
-				{selectedItem != null ? selectedItem.name : name}
-				</Dropdown.Toggle>
-			<Dropdown.Menu as={SearchableMenu} isOpen={open}>
-				{items.map(item => {
-					return (
-						<Dropdown.Item
+		<>
+			<label className="m-0">{name}</label>
+			<Dropdown onToggle={onToggle}>
+				<Dropdown.Toggle variant="secondary" value={selectedItem? selectedItem.name : null} ref={reference}>
+					{selectedItem != null ? selectedItem.name : name}
+					</Dropdown.Toggle>
+				<Dropdown.Menu as={SearchableMenu} isOpen={open}>
+					{items.map(item => {
+						return (
+							<Dropdown.Item
 							key={item.id}
 							as="button"
 							onClick={(event) => (onItemSelected ? onSelected(event, item) : null)}
-						>
-							{item.name}
-						</Dropdown.Item>
-					);
-				})}
-			</Dropdown.Menu>
-		</Dropdown>
+							>
+								{item.name}
+							</Dropdown.Item>
+						);
+					})}
+				</Dropdown.Menu>
+			</Dropdown>
+		</>
 	);
 };
 

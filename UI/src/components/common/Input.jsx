@@ -23,7 +23,8 @@ function Input(props) {
         value={state.inputText}
         placeholder={props.placeholder}
         disabled={props.disabled? props.disabled : false}
-        onChange={handleChange}
+        onChange={handleChange && handleChange}
+        ref={props.reference}
         />
       </div>
       {state.showClear ? (
