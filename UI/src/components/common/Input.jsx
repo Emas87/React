@@ -4,10 +4,9 @@ import "./Input.scss";
 function Input(props) {
   const inputRef = useRef(null);
   const handleChange = (event) =>{
-    const value = event.target.value;
-		setState({ inputText: value, showClear: value.length > 0 });
-    //setinputValue(event.target.value)
-    props.handleChange(event)
+    let value = event.target.value;
+    setState({ inputText: value, showClear: value.length > 0 });
+    props.handleChange && props.handleChange(event)
   }
 
   const clear = () => {
@@ -18,13 +17,14 @@ function Input(props) {
   return (
   <div className="input-label">
       <label className="m-0">{props.name}</label>
-      <div className="input-group">
-        <input className="input-label__input form-control" type={props.type}
+      <div className="input-group">        
+        <input className="input-label__input form-control" type={props.type === "dir" ? "file" : props.type}
         value={state.inputText}
         placeholder={props.placeholder}
         disabled={props.disabled? props.disabled : false}
-        onChange={handleChange && handleChange}
+        onChange={handleChange}
         ref={props.reference}
+        webkitdirectory={props.type === "dir" ? "" : "false"}
         />
       </div>
       {state.showClear ? (

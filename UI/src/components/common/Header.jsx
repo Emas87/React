@@ -13,8 +13,13 @@ function Header() {
   const navigate = useNavigate()
   
   const GoBack = () => {
+
+    let newPath = path.pathname
+    if(newPath[newPath.length - 1] === "/"){
+      newPath = newPath.slice(0, -1)
+    }
     let re = /(.*\/)/
-    let matches = path.pathname.match(re)
+    let matches = newPath.match(re)
     if(matches !== null){
       navigate(matches[1])
     } else {
